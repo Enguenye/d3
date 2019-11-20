@@ -107,10 +107,9 @@ d3.json("https://gist.githubusercontent.com/josejbocanegra/000e838b77c6ec8e5d579
         .domain([0, 100])
         .range([iheight, 0]);
 
-    const x = d3.scaleBand()
-        .domain(data.map(d => d.purchasingpower))
-        .range([0, iwidth])
-        .padding(0.1);
+    const x = d3.scaleLinear()
+        .domain([0,60000])
+        .range([0, iwidth]);
 
     const bars = g.selectAll("rect").data(data);
 
@@ -119,8 +118,8 @@ d3.json("https://gist.githubusercontent.com/josejbocanegra/000e838b77c6ec8e5d579
         .attr("stroke","black")
         .attr("opacity",0.5)
         .attr("cy", d=> y(d.lifeexpectancy))
-        .attr("rx", d=> d.population/1000000)
-        .attr("ry", d=> d.population/1000000);
+        .attr("rx", d=> d.population/1500000)
+        .attr("ry", d=> d.population/1500000);
 
         bars.enter().append("text")
         .attr("dx", function(d){return x(d.purchasingpower)})
